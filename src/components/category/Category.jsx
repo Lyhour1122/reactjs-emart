@@ -3,21 +3,21 @@ import { useNavigate } from "react-router-dom";
 const categories = [
   {
     name: "Fashion",
-    image: "https://cdn-icons-png.flaticon.com/512/892/892458.png",
+    image: "https://cdn-icons-png.flaticon.com/512/17944/17944876.png",
     path: "/category/fashion",
     color: "bg-pink-500 text-pink-600",
     hover: "hover:bg-pink-600",
   },
   {
     name: "Shirt",
-    image: "https://cdn-icons-png.flaticon.com/512/892/892453.png",
+    image: "https://cdn-icons-png.flaticon.com/512/17443/17443281.png",
     path: "/category/shirt",
     color: "bg-indigo-500 text-indigo-600",
     hover: "hover:bg-indigo-600",
   },
   {
     name: "Jacket",
-    image: "https://cdn-icons-png.flaticon.com/512/892/892454.png",
+    image: "https://cdn-icons-png.flaticon.com/512/863/863684.png",
     path: "/category/jacket",
     color: "bg-gray-700 text-gray-700",
     hover: "hover:bg-gray-800",
@@ -38,7 +38,7 @@ const categories = [
   },
   {
     name: "Shoes",
-    image: "https://cdn-icons-png.flaticon.com/512/892/892471.png",
+    image: "https://cdn-icons-png.flaticon.com/512/8566/8566870.png",
     path: "/category/shoes",
     color: "bg-orange-500 text-orange-600",
     hover: "hover:bg-orange-600",
