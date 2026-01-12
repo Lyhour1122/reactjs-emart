@@ -6,7 +6,7 @@ function Footer() {
         <div className="flex items-center space-x-4 text-white">
           <span className="text-xl font-bold">E-mart</span>
           <span className="text-sm opacity-80">
-            © {new Date().getFullYear()} emart — @emart
+            © {new Date().getFullYear()} E-Store — @E_Store
           </span>
         </div>
 

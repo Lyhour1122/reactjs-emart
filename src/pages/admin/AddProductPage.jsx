@@ -45,12 +45,10 @@ function AddProductPage() {
       return;
     }
 
-    // ✅ normalize + safe convert
     const cleanTitle = product.title.trim();
     const cleanDesc = product.description.trim();
     const cleanImg = product.productImageUrl.trim();
-
-    const cleanCategory = String(product.category).toLowerCase().trim(); // ✅ IMPORTANT
+    const cleanCategory = product.category.toLowerCase().trim();
     const cleanPrice = Number(product.price);
     const cleanQty = Math.max(1, Number(product.quantity || 1));
 
@@ -62,16 +60,14 @@ function AddProductPage() {
     try {
       setLoading(true);
 
-      const currentDate = new Date();
-
       await addDoc(collection(fireDB, "products"), {
         title: cleanTitle,
-        price: cleanPrice, // ✅ store as number
-        category: cleanCategory, // ✅ always lowercase
+        price: cleanPrice,
+        category: cleanCategory,
         description: cleanDesc,
         productImageUrl: cleanImg,
         quantity: cleanQty,
-        date: currentDate.toLocaleDateString("en-US", {
+        date: new Date().toLocaleDateString("en-US", {
           day: "2-digit",
           month: "short",
           year: "numeric",
@@ -98,9 +94,9 @@ function AddProductPage() {
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
-      <div className="w-full max-w-md bg-pink-50 border border-pink-200 rounded-xl shadow-md p-6">
-        <h2 className="text-center text-2xl font-bold text-pink-600 mb-6">
+    <div className="w-full min-h-screen flex items-center justify-center bg-blue-50 px-4 py-10">
+      <div className="w-full max-w-md bg-white border border-blue-200 rounded-xl shadow-lg p-6">
+        <h2 className="text-center text-2xl font-bold text-blue-600 mb-6">
           Add Product
         </h2>
 
@@ -111,7 +107,7 @@ function AddProductPage() {
             value={product.title}
             onChange={handleChange}
             placeholder="Product Title"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -120,7 +116,7 @@ function AddProductPage() {
             value={product.price}
             onChange={handleChange}
             placeholder="Product Price"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -128,15 +124,15 @@ function AddProductPage() {
             name="productImageUrl"
             value={product.productImageUrl}
             onChange={handleChange}
-            placeholder="Product Image Url"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md"
+            placeholder="Product Image URL"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <select
             name="category"
             value={product.category}
             onChange={handleChange}
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
             {categoryList.map((item, index) => (
               <option key={index} value={item.name}>
@@ -151,7 +147,7 @@ function AddProductPage() {
             onChange={handleChange}
             placeholder="Product Description"
             rows={4}
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md resize-none"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <input
@@ -160,13 +156,13 @@ function AddProductPage() {
             value={product.quantity}
             onChange={handleChange}
             placeholder="Quantity"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-pink-600 text-white py-2 rounded-md font-semibold hover:bg-pink-700 transition"
+            className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-60"
           >
             {loading ? "Adding..." : "Add Product"}
           </button>
