@@ -18,6 +18,7 @@ import { ProtectRouteForuser } from "./components/protectedRoute/ProtectRouteFor
 import { ProtectRouteForadmin } from "./components/protectedRoute/ProtectRouteForadmin";
 import AddProductPage from "./pages/admin/AddProductPage";
 import CategoryPage from "./pages/category/CategoryPage";
+import AboutUs from "./components/About/AboutUs";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           {/* Pages WITH Layout */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Homepage />} />
+            <Route path="about" element={<AboutUs />} />
             <Route path="allproduct" element={<AllProduct />} />
             <Route path="productinfo/:id" element={<ProductInfo />} />
             <Route path="cart" element={<CartPage />} />
