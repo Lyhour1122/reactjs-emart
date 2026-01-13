@@ -30,7 +30,6 @@ function UpdateProductPage() {
     quantity: 1,
   });
 
-  // ✅ Load product data by id
   const getProductById = async () => {
     try {
       setLoading(true);
@@ -63,7 +62,7 @@ function UpdateProductPage() {
 
   useEffect(() => {
     if (id) getProductById();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [id]);
 
   const handleChange = (e) => {
@@ -71,7 +70,6 @@ function UpdateProductPage() {
     setProduct((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Update product
   const updateProduct = async (e) => {
     e.preventDefault();
 
@@ -89,8 +87,6 @@ function UpdateProductPage() {
     try {
       setLoading(true);
 
-      const currentDate = new Date();
-
       await updateDoc(doc(fireDB, "products", id), {
         title: product.title.trim(),
         price: product.price,
@@ -98,12 +94,12 @@ function UpdateProductPage() {
         category: product.category,
         description: product.description.trim(),
         quantity: Number(product.quantity),
-        date: currentDate.toLocaleDateString("en-US", {
+        date: new Date().toLocaleDateString("en-US", {
           day: "2-digit",
           month: "short",
           year: "numeric",
         }),
-        time: Timestamp.now(), // ✅ update timestamp
+        time: Timestamp.now(),
       });
 
       toast.success("Product updated ✅");
@@ -118,8 +114,8 @@ function UpdateProductPage() {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-gray-50 px-4 py-10">
-      <div className="w-full max-w-md bg-pink-50 border border-pink-200 rounded-xl shadow-md p-6">
-        <h2 className="text-center text-2xl font-bold text-pink-600 mb-6">
+      <div className="w-full max-w-md bg-blue-50 border border-blue-200 rounded-xl shadow-md p-6">
+        <h2 className="text-center text-2xl font-bold text-blue-600 mb-6">
           Update Product
         </h2>
 
@@ -130,7 +126,7 @@ function UpdateProductPage() {
             value={product.title}
             onChange={handleChange}
             placeholder="Product Title"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400"
           />
 
           <input
@@ -139,7 +135,7 @@ function UpdateProductPage() {
             value={product.price}
             onChange={handleChange}
             placeholder="Product Price"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400"
           />
 
           <input
@@ -148,14 +144,14 @@ function UpdateProductPage() {
             value={product.productImageUrl}
             onChange={handleChange}
             placeholder="Product Image Url"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400"
           />
 
           <select
             name="category"
             value={product.category}
             onChange={handleChange}
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400"
           >
             {categoryList.map((item, index) => (
               <option key={index} value={item.name}>
@@ -170,23 +166,22 @@ function UpdateProductPage() {
             onChange={handleChange}
             placeholder="Product Description"
             rows={4}
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400 resize-none"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400 resize-none"
           />
 
-          {/* ✅ Quantity */}
           <input
             type="number"
             name="quantity"
             value={product.quantity}
             onChange={handleChange}
             placeholder="Quantity"
-            className="w-full bg-pink-50 border border-pink-200 px-3 py-2 rounded-md outline-none focus:border-pink-400"
+            className="w-full bg-blue-50 border border-blue-200 px-3 py-2 rounded-md outline-none focus:border-blue-400"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-pink-600 text-white py-2 rounded-md font-semibold hover:bg-pink-700 transition disabled:opacity-60"
+            className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition disabled:opacity-60"
           >
             {loading ? "Updating..." : "Update Product"}
           </button>
